@@ -9,7 +9,7 @@ public:
 	{
 		m_x = x;
 	}
-	double get_binary()const { return m_x;}
+	int get_binary()const { return m_x;}
 	friend Binary operator+(const Binary& x, const Binary& y);
 	friend Binary operator-(const Binary& x, const Binary& y);
 	friend Binary operator*(const Binary& x, const Binary& y);
