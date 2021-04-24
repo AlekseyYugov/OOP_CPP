@@ -2,15 +2,15 @@
 using namespace std;
 
 #define tab "\t"
-
+template<typename T>
 class Tree
 {
 	class Element
 	{
-		int Data;
+		T Data;
 		Element* pLeft, * pRight;
 	public:
-		Element(int Data, Element* pLeft = nullptr, Element* pRight = nullptr) :Data(Data), pLeft(pLeft), pRight(pRight)
+		Element(T Data, Element* pLeft = nullptr, Element* pRight = nullptr) :Data(Data), pLeft(pLeft), pRight(pRight)
 		{
 			cout << "EConstructor:\t" << this << endl;
 		}
@@ -48,11 +48,11 @@ public:
 		clear(this->Root);
 		cout << "TDestructor:\t" << this << endl;
 	}
-	void insert(int Data)
+	void insert(T Data)
 	{
 		insert(Data, this->Root);
 	}
-	void erase(int Data)
+	void erase(T Data)
 	{
 		erase(Data, this->Root);
 	}
@@ -90,7 +90,7 @@ public:
 		cout << endl;
 	}
 private:
-	void insert(int Data, Element* Root)//Root - корневой элемент поддерева (ветки)
+	void insert(T Data, Element* Root)//Root - корневой элемент поддерева (ветки)
 	{
 		if (this->Root == nullptr)this->Root = new Element(Data);
 		if (Root == nullptr)return;	//Если зашли в какую-либо ветку, а она оказалась пустой - сразу же выходим из нее.
@@ -107,7 +107,7 @@ private:
 			else Root->pRight = new Element(Data);
 		}
 	}
-	void erase(int Data, Element*& Root)
+	void erase(T Data, Element*& Root)
 	{
 		if (Root == nullptr)return;
 		erase(Data, Root->pLeft);
@@ -181,7 +181,7 @@ void main()
 {
 	setlocale(LC_ALL, "Russian");
 	int n;
-	Tree t = { 50, 25, 16, 32, 8, 85, 64, 62, 80, 91, 98 };
+	Tree <int>t = { 50, 25, 16, 32, 8, 85, 64, 62, 80, 91, 98 };
 	t.print();
 	cout << "Минимальное значение в дереве: " << t.minValue() << endl;
 	cout << "Минимальное значение в дереве: " << t.maxValue() << endl;
@@ -197,5 +197,7 @@ void main()
 	cout << "Сумма элементов дерева: " << t.sum() << endl;
 	cout << "Среднее арифметическое элементов дерева: " << t.avg() << endl;
 
+	Tree<char> t2 = { 'H','E','L','L','O','W','O','R','L','D','!' };
+	t2.print();
 
 }
